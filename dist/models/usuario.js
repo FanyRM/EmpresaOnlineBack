@@ -6,14 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../db/connection"));
 const sequelize_1 = require("sequelize");
 const Usuario = connection_1.default.define('Usuario', {
-    Emp_Email: {
-        type: sequelize_1.DataTypes.STRING
+    cor_Elec: {
+        type: sequelize_1.DataTypes.STRING,
+        unique: true,
+        allowNull: false
     },
-    Contrasenia: {
-        type: sequelize_1.DataTypes.STRING
+    nom_Usu: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
     },
-    IDRol: {
-        type: sequelize_1.DataTypes.INTEGER
+    cont_Usu: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
     }
 }, {
     createdAt: false,

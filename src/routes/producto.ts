@@ -1,13 +1,12 @@
 import {Router} from 'express';
-import { deleteProduct, getProduct, getProducts, postProduct, updateProduct } from '../controllers/producto';
+import { deleteProducto, getProducto, getProductos, postProducto, updateProducto } from '../controllers/producto';
 
 const routerProducto = Router();
 
-routerProducto.get('/',getProducts );
-routerProducto.get('/:id',getProduct);
-routerProducto.delete('/:id',deleteProduct);
-routerProducto.post('/',postProduct);
-routerProducto.put('/:id',updateProduct);
+routerProducto.get('/',getProductos );
+routerProducto.get('/:id',getProducto);
+routerProducto.delete('/:id',deleteProducto);
+routerProducto.post('/',postProducto);
+routerProducto.put('/:id',updateProducto);
 
 export default routerProducto;
-//1.46

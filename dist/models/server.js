@@ -12,21 +12,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//Herramientas
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const sucursal_1 = __importDefault(require("../routes/sucursal"));
+//Base de datos
 const connection_1 = __importDefault(require("../db/connection"));
+//Importes de ruteo
+const sucursal_1 = __importDefault(require("../routes/sucursal"));
 const producto_1 = __importDefault(require("../routes/producto"));
-const venta_1 = __importDefault(require("../routes/venta"));
-const juego_1 = __importDefault(require("../routes/juego"));
 const empleado_1 = __importDefault(require("../routes/empleado"));
 const rol_1 = __importDefault(require("../routes/rol"));
-const dato_1 = __importDefault(require("../routes/dato"));
-const tip_prods_1 = __importDefault(require("../routes/tip_prods"));
-const distribuidors_1 = __importDefault(require("../routes/distribuidors"));
-const notas_1 = __importDefault(require("../routes/notas"));
 const usuario_1 = __importDefault(require("../routes/usuario"));
 const cliente_1 = __importDefault(require("../routes/cliente"));
+const proveedor_1 = __importDefault(require("../routes/proveedor"));
+const contacto_1 = __importDefault(require("../routes/contacto"));
+const categoria_1 = __importDefault(require("../routes/categoria"));
+const descuento_1 = __importDefault(require("../routes/descuento"));
+const categoria_producto_1 = __importDefault(require("../routes/categoria_producto"));
+const inventario_1 = __importDefault(require("../routes/inventario"));
+const puesto_1 = __importDefault(require("../routes/puesto"));
+const usuario_cliente_1 = __importDefault(require("../routes/usuario_cliente"));
+const venta_1 = __importDefault(require("../routes/venta"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -49,16 +55,19 @@ class Server {
         });
         this.app.use('/api/sucursales', sucursal_1.default);
         this.app.use('/api/productos', producto_1.default);
-        this.app.use('/api/ventas', venta_1.default);
-        this.app.use('/api/juegos', juego_1.default);
         this.app.use('/api/empleados', empleado_1.default);
         this.app.use('/api/roles', rol_1.default);
-        this.app.use('/api/datos', dato_1.default);
-        this.app.use('/api/tip_Prod', tip_prods_1.default);
-        this.app.use('/api/distribuidors', distribuidors_1.default);
-        this.app.use('/api/Notas', notas_1.default);
         this.app.use('/api/login', usuario_1.default);
         this.app.use('/api/clientes', cliente_1.default);
+        this.app.use('/api/proveedores', proveedor_1.default);
+        this.app.use('/api/contactos', contacto_1.default);
+        this.app.use('/api/categorias', categoria_1.default);
+        this.app.use('/api/descuentos', descuento_1.default);
+        this.app.use('/api/categorias-productos', categoria_producto_1.default);
+        this.app.use('/api/inventarios', inventario_1.default);
+        this.app.use('/api/puestos', puesto_1.default);
+        this.app.use('/api/usuarios-clientes', usuario_cliente_1.default);
+        this.app.use('/api/ventas', venta_1.default);
     }
     midlewares() {
         //Parseamos el body

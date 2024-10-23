@@ -1,14 +1,18 @@
 import db from '../db/connection';
 import{DataTypes} from 'sequelize'
 const Usuario = db.define('Usuario', {
-    Emp_Email:{
-        type:DataTypes.STRING
+    cor_Elec: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
     },
-    Contrasenia:{
-        type:DataTypes.STRING
+    nom_Usu: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    IDRol: {
-        type: DataTypes.INTEGER
+    cont_Usu: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 },
 {

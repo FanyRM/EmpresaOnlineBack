@@ -6,34 +6,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const Empleado = connection_1.default.define('Empleado', {
-    Emp_Nom: {
+    nom_Emp: {
         type: sequelize_1.DataTypes.STRING
     },
-    Ape_Pat: {
+    ape_Pat_Emp: {
         type: sequelize_1.DataTypes.STRING
     },
-    Ape_Mat: {
+    ape_Mat_Emp: {
         type: sequelize_1.DataTypes.STRING
     },
-    Edad: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
-    Emp_Telefono: {
+    nss_Emp: {
         type: sequelize_1.DataTypes.STRING
     },
-    Emp_Email: {
+    cor_Elec: {
         type: sequelize_1.DataTypes.STRING
     },
-    Contrasenia: {
+    fec_Nac: {
+        type: sequelize_1.DataTypes.DATE
+    },
+    fec_Alta: {
+        type: sequelize_1.DataTypes.DATE
+    },
+    edo_Emp: {
         type: sequelize_1.DataTypes.STRING
     },
-    Estado: {
+    sit_Emp: {
         type: sequelize_1.DataTypes.BOOLEAN
     },
-    IDRol: {
+    id_Puesto: {
         type: sequelize_1.DataTypes.INTEGER
     },
-    IDSucursal: {
+    id_Sucursal: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    id_Rol: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    id_Usuario: {
         type: sequelize_1.DataTypes.INTEGER
     },
 }, {

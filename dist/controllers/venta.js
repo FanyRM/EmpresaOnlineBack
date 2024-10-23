@@ -22,33 +22,45 @@ const getVentas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         console.log(error);
         res.json({
-            msg: 'Error en el get'
+            msg: 'Error al traer la información, consulte con su administrador'
         });
     }
 });
 exports.getVentas = getVentas;
 const getVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const venta = yield venta_1.default.findByPk(id);
-    if (venta) {
-        res.json(venta);
+    try {
+        const { id } = req.params;
+        const venta = yield venta_1.default.findByPk(id);
+        if (venta) {
+            res.json(venta);
+        }
+        else {
+            res.status(404).json({ msg: `No existe la venta con la id: ${id}` });
+        }
     }
-    else {
-        res.status(404).json({ msg: `No existe la venta con la id: ${id}` });
+    catch (error) {
+        console.log(error);
+        res.json({
+            msg: 'Error al traer la información, consulte con su administrador'
+        });
     }
 });
 exports.getVenta = getVenta;
 const deleteVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const venta = yield venta_1.default.findByPk(id);
-    if (!venta) {
-        res.status(404).json({ msg: `No existe la  venta con la id: ${id}` });
+    try {
+        const { id } = req.params;
+        const venta = yield venta_1.default.findByPk(id);
+        if (!venta) {
+            res.status(404).json({ msg: `No existe la venta con la id: ${id}` });
+        }
+        else {
+            yield venta.destroy();
+            res.json({ msg: 'Venta eliminada con éxito' });
+        }
     }
-    else {
-        yield venta.destroy();
-        res.json({
-            msg: 'El producto fue eliminado con exito'
-        });
+    catch (error) {
+        console.log(error);
+        res.json({ msg: 'Error al eliminar la venta, consulte con su administrador' });
     }
 });
 exports.deleteVenta = deleteVenta;
@@ -56,15 +68,11 @@ const postVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
         yield venta_1.default.create(body);
-        res.json({
-            msg: 'La venta fue agregado con exito',
-        });
+        res.json({ msg: 'Venta agregada con éxito' });
     }
     catch (error) {
         console.log(error);
-        res.json({
-            msg: `Upps, ocurrio un error`
-        });
+        res.json({ msg: 'Error al agregar la venta' });
     }
 });
 exports.postVenta = postVenta;
@@ -75,21 +83,15 @@ const updateVenta = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         if (venta) {
             yield venta.update(body);
-            res.json({
-                msg: 'La venta fue actualizado con exito'
-            });
+            res.json({ msg: 'Venta actualizada con éxito' });
         }
         else {
-            res.status(404).json({
-                msg: `No existe la venta con la id: ${id}`
-            });
+            res.status(404).json({ msg: `No existe la venta con la id: ${id}` });
         }
     }
     catch (error) {
         console.log(error);
-        res.json({
-            msg: `Upps, ocurrio un error`
-        });
+        res.json({ msg: 'Error al actualizar la venta' });
     }
 });
 exports.updateVenta = updateVenta;

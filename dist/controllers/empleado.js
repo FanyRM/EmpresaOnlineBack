@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateEstadoEmpleado = exports.updateEmpleado = exports.postEmpleado = exports.deleteEmpleado = exports.getEmpleado = exports.getEmpleados = void 0;
+exports.updateSituacionEmp = exports.updateEstadoEmpleado = exports.updateEmpleado = exports.postEmpleado = exports.deleteEmpleado = exports.getEmpleado = exports.getEmpleados = void 0;
 const empleado_1 = __importDefault(require("../models/empleado"));
 const getEmpleados = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -56,8 +56,8 @@ const deleteEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.deleteEmpleado = deleteEmpleado;
 const postEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
-    const { Emp_Email } = req.body;
-    const email = yield empleado_1.default.findOne({ where: { Emp_Email: Emp_Email } });
+    const { cor_Elec } = req.body;
+    const email = yield empleado_1.default.findOne({ where: { cor_Elec: cor_Elec } });
     if (email) {
         return res.status(400).json({
             msg: 'El email ya esta registrado en la base de datos'
@@ -104,7 +104,7 @@ const updateEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.updateEmpleado = updateEmpleado;
 const updateEstadoEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { estado } = req.body;
+    const { edo_Emp } = req.body;
     try {
         const empleado = yield empleado_1.default.findByPk(id);
         if (!empleado) {
@@ -112,7 +112,7 @@ const updateEstadoEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, fun
                 msg: `No existe el empleado con la id: ${id}`
             });
         }
-        yield empleado.update({ Estado: estado });
+        yield empleado.update({ edo_Emp: edo_Emp });
         res.json({
             msg: 'El estado del empleado ha sido actualizado correctamente'
         });
@@ -125,3 +125,26 @@ const updateEstadoEmpleado = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.updateEstadoEmpleado = updateEstadoEmpleado;
+const updateSituacionEmp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { sit_Emp } = req.body;
+    try {
+        const empleado = yield empleado_1.default.findByPk(id);
+        if (!empleado) {
+            return res.status(404).json({
+                msg: `No existe el empleado con la id: ${id}`
+            });
+        }
+        yield empleado.update({ sit_Emp: sit_Emp });
+        res.json({
+            msg: 'El estado del empleado ha sido actualizado correctamente'
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Error al actualizar el estado del empleado'
+        });
+    }
+});
+exports.updateSituacionEmp = updateSituacionEmp;

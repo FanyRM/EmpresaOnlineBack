@@ -48,9 +48,9 @@ export const deleteEmpleado = async (req: Request, res: Response) => {
 
 export const postEmpleado = async (req: Request, res: Response) => {
     const { body } = req;
-    const { Emp_Email } = req.body;
+    const { cor_Elec } = req.body;
 
-    const email = await Empleado.findOne({where: {Emp_Email: Emp_Email}})
+    const email = await Empleado.findOne({where: {cor_Elec: cor_Elec}})
     if (email) {
         return res.status(400).json ({
             msg: 'El email ya esta registrado en la base de datos'
@@ -97,7 +97,7 @@ export const updateEmpleado = async (req: Request, res: Response) => {
 
 export const updateEstadoEmpleado = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { estado } = req.body;
+    const { edo_Emp } = req.body;
 
     try {
         const empleado = await Empleado.findByPk(id);
@@ -108,7 +108,33 @@ export const updateEstadoEmpleado = async (req: Request, res: Response) => {
             });
         }
 
-        await empleado.update({ Estado: estado });
+        await empleado.update({ edo_Emp: edo_Emp });
+
+        res.json({
+            msg: 'El estado del empleado ha sido actualizado correctamente'
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Error al actualizar el estado del empleado'
+        });
+    }
+};
+
+export const updateSituacionEmp = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { sit_Emp } = req.body;
+
+    try {
+        const empleado = await Empleado.findByPk(id);
+
+        if (!empleado) {
+            return res.status(404).json({
+                msg: `No existe el empleado con la id: ${id}`
+            });
+        }
+
+        await empleado.update({ sit_Emp: sit_Emp });
 
         res.json({
             msg: 'El estado del empleado ha sido actualizado correctamente'

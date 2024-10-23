@@ -5,21 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const Sucursal = connection_1.default.define('Sucursal', {
-    Nom_Suc: {
-        type: sequelize_1.DataTypes.STRING
+const Sucursale = connection_1.default.define('Sucursale', {
+    nom_Suc: {
+        type: sequelize_1.DataTypes.STRING,
     },
-    Loc_Suc: {
-        type: sequelize_1.DataTypes.STRING
+    loc_Suc: {
+        type: sequelize_1.DataTypes.STRING,
     },
-    Des_Suc: {
-        type: sequelize_1.DataTypes.STRING
+    des_Suc: {
+        type: sequelize_1.DataTypes.TEXT,
     },
-    Img_Suc: {
+    img_Suc: {
         type: sequelize_1.DataTypes.STRING
-    },
+    }
 }, {
     createdAt: false,
     updatedAt: false,
 });
-exports.default = Sucursal;
+exports.default = Sucursale;

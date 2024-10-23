@@ -9,4 +9,5 @@ routerEmpleado.delete('/:id', empleado_1.deleteEmpleado);
 routerEmpleado.post('/', empleado_1.postEmpleado);
 routerEmpleado.put('/:id', empleado_1.updateEmpleado);
 routerEmpleado.put('/:id/estado', empleado_1.updateEstadoEmpleado);
+routerEmpleado.put('/:id/situacion', empleado_1.updateSituacionEmp);
 exports.default = routerEmpleado;

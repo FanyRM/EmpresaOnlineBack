@@ -1,22 +1,22 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const Sucursal = db.define('Sucursal', {
-    Nom_Suc: {
-        type: DataTypes.STRING
+const Sucursale = db.define('Sucursale', {
+    nom_Suc: {
+        type: DataTypes.STRING,
     },
-    Loc_Suc: {
-        type: DataTypes.STRING
+    loc_Suc: {
+        type: DataTypes.STRING,
     },
-    Des_Suc: {
-        type: DataTypes.STRING
+    des_Suc: {
+        type: DataTypes.TEXT,
     },
-    Img_Suc: {
+    img_Suc: {
         type: DataTypes.STRING
-    },
+    }
 }, {
     createdAt: false,
     updatedAt: false,
 });
 
-export default Sucursal;
+export default Sucursale;

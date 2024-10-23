@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateRol = exports.postRol = exports.deleteRol = exports.getRol = exports.getRoles = void 0;
-const rol_1 = __importDefault(require("../models/rol"));
+const role_1 = __importDefault(require("../models/role"));
 const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const listRoles = yield rol_1.default.findAll();
+        const listRoles = yield role_1.default.findAll();
         res.json(listRoles);
     }
     catch (error) {
@@ -29,7 +29,7 @@ const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getRoles = getRoles;
 const getRol = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const rol = yield rol_1.default.findByPk(id);
+    const rol = yield role_1.default.findByPk(id);
     if (rol) {
         res.json(rol);
     }
@@ -40,7 +40,7 @@ const getRol = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getRol = getRol;
 const deleteRol = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const rol = yield rol_1.default.findByPk(id);
+    const rol = yield role_1.default.findByPk(id);
     if (!rol) {
         res.status(404).json({ msg: `No existe el rol con la id: ${id}` });
     }
@@ -55,7 +55,7 @@ exports.deleteRol = deleteRol;
 const postRol = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     try {
-        yield rol_1.default.create(body);
+        yield role_1.default.create(body);
         res.json({
             msg: 'El rol fue agregado con exito',
         });
@@ -71,7 +71,7 @@ exports.postRol = postRol;
 const updateRol = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     const { id } = req.params;
-    const rol = yield rol_1.default.findByPk(id);
+    const rol = yield role_1.default.findByPk(id);
     try {
         if (rol) {
             yield rol.update(body);

@@ -1,91 +1,75 @@
-
-import { Request,  Response } from 'express';
+import { Request, Response } from 'express';
 import Producto from '../models/producto';
 
-export const getProducts = async(req:Request,res: Response)=>{
-    const listProducts = await Producto.findAll()
-    res.json(listProducts)
-        
-}
-export const getProduct =  async (req:Request,res: Response)=>{
-    const {id} =req.params;
-    const product =  await Producto.findByPk(id);
-
-    if(product){
-        res.json(product)
-    }else{
-        res.status(404).json({
-            msg:`No existe un producto con el id ${id}`
-        })
-    }
-    
-
-
-}
-export const deleteProduct = async (req:Request,res: Response)=>{
-    const {id} =req.params;
-    const product =  await Producto.findByPk(id);
-    if(!product){
-        res.status(404).json({
-            msg:`No existe un producto con el id ${id}`
-    })
-
-    }else{
-        await product.destroy();
-        res.json({
-            msg: `Producto fue eliminado con exito`
-        })
-    }
-    
-    
-
-}
-//Promesa
-export const postProduct = async(req:Request,res: Response)=>{
-    const {body} =req;
-    try{
-        await Producto.create(body);
-
-//espera la promesa
-res.json({
-    msg: `Producto creado con exito`
-})
-
-    }catch(error){
+export const getProductos = async (req: Request, res: Response) => {
+    try {
+        const listProductos = await Producto.findAll();
+        res.json(listProductos);
+    } catch (error) {
         console.log(error);
         res.json({
-            msg: `Ocurrio un error, comuniquese con soporte`
-        })
-
-
+            msg: 'Error al traer la información, consulte con su administrador'
+        });
     }
+};
 
-
-}
-export const updateProduct = async (req:Request,res: Response)=>{
-    const {body} = req;
-    const{id} = req.params
-    const product =  await Producto.findByPk(id);
-    try{
-if(product){
-await product.update(body);
-res.json({ 
-    msg: `Producto actualizado con exito`
-
-})
-}else{
-    res.status(404).json({
-        msg:'No existe un producto con ese error'
-    })
-}}catch(error){
-
- console.log(error);
+export const getProducto = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const producto = await Producto.findByPk(id);
+        if (producto) {
+            res.json(producto);
+        } else {
+            res.status(404).json({ msg: `No existe el producto con la id: ${id}` });
+        }
+    } catch (error) {
+        console.log(error);
         res.json({
-            msg: `Ocurrio un error, comuniquese con soporte`
-        })
-}
-   
+            msg: 'Error al traer la información, consulte con su administrador'
+        });
+    }
+};
 
-    
-    
-}
+export const deleteProducto = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const producto = await Producto.findByPk(id);
+        if (!producto) {
+            res.status(404).json({ msg: `No existe el producto con la id: ${id}` });
+        } else {
+            await producto.destroy();
+            res.json({ msg: 'Producto eliminado con éxito' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ msg: 'Error al eliminar el producto, consulte con su administrador' });
+    }
+};
+
+export const postProducto = async (req: Request, res: Response) => {
+    const { body } = req;
+    try {
+        await Producto.create(body);
+        res.json({ msg: 'Producto agregado con éxito' });
+    } catch (error) {
+        console.log(error);
+        res.json({ msg: 'Error al agregar el producto' });
+    }
+};
+
+export const updateProducto = async (req: Request, res: Response) => {
+    const { body } = req;
+    const { id } = req.params;
+    const producto = await Producto.findByPk(id);
+    try {
+        if (producto) {
+            await producto.update(body);
+            res.json({ msg: 'Producto actualizado con éxito' });
+        } else {
+            res.status(404).json({ msg: `No existe el producto con la id: ${id}` });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ msg: 'Error al actualizar el producto' });
+    }
+};

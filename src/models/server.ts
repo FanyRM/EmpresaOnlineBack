@@ -1,18 +1,26 @@
+//Herramientas
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import routeSucursal from '../routes/sucursal';
+
+//Base de datos
 import db from '../db/connection';
+
+//Importes de ruteo
+import routeSucursal from '../routes/sucursal';
 import routerProducto from '../routes/producto';
-import routerVenta from '../routes/venta';
-import routerJuego from '../routes/juego';
 import routerEmpleado from '../routes/empleado';
 import routerRol from '../routes/rol';
-import routerDato from '../routes/dato';
-import routertip_prods from '../routes/tip_prods';
-import routerdistribuidors from '../routes/distribuidors';
-import routernotas from '../routes/notas';
 import routerLogin from '../routes/usuario';
 import routerCliente from '../routes/cliente';
+import routerProveedor from '../routes/proveedor';
+import routerContacto from '../routes/contacto';
+import routerCategoria from '../routes/categoria';
+import routerDescuento from '../routes/descuento';
+import routerCategoriaProducto from '../routes/categoria_producto';
+import routerInventario from '../routes/inventario';
+import routerPuesto from '../routes/puesto';
+import routerUsuarioCliente from '../routes/usuario_cliente';
+import routerVenta from '../routes/venta';
 
 class Server {
     private app: Application;
@@ -41,16 +49,20 @@ class Server {
         })
         this.app.use('/api/sucursales', routeSucursal)
         this.app.use('/api/productos',routerProducto)
-        this.app.use('/api/ventas',routerVenta)
-        this.app.use('/api/juegos',routerJuego)
         this.app.use('/api/empleados',routerEmpleado)
         this.app.use('/api/roles',routerRol)
-        this.app.use('/api/datos',routerDato)
-        this.app.use('/api/tip_Prod',routertip_prods)
-        this.app.use('/api/distribuidors',routerdistribuidors)
-        this.app.use('/api/Notas',routernotas)
         this.app.use('/api/login',routerLogin)
         this.app.use('/api/clientes',routerCliente)
+        this.app.use('/api/proveedores',routerProveedor)
+        this.app.use('/api/contactos',routerContacto)
+        this.app.use('/api/categorias',routerCategoria)
+        this.app.use('/api/descuentos',routerDescuento)
+        this.app.use('/api/categorias-productos',routerCategoriaProducto)
+        this.app.use('/api/inventarios',routerInventario)
+        this.app.use('/api/puestos',routerPuesto)
+        this.app.use('/api/usuarios-clientes',routerUsuarioCliente)
+        this.app.use('/api/ventas',routerVenta)
+
     }
 
     midlewares() {

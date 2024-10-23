@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Rol from '../models/rol';
+import Rol from '../models/role';
 
 
 export const getRoles = async (req: Request, res: Response) => {

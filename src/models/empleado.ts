@@ -2,34 +2,43 @@ import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
 const Empleado = db.define('Empleado', {
-    Emp_Nom: {
+    nom_Emp : {
         type: DataTypes.STRING
     },
-    Ape_Pat: {
+    ape_Pat_Emp : {
         type: DataTypes.STRING
     },
-    Ape_Mat: {
-        type: DataTypes.STRING
-    }, 
-    Edad: {
-        type: DataTypes.INTEGER
-    },
-    Emp_Telefono: {
+    ape_Mat_Emp : {
         type: DataTypes.STRING
     },
-    Emp_Email: {
+    nss_Emp : {
         type: DataTypes.STRING
     },
-    Contrasenia: {
+    cor_Elec : {
         type: DataTypes.STRING
     },
-    Estado: {
+    fec_Nac: {
+        type: DataTypes.DATE
+    },
+    fec_Alta : {
+        type: DataTypes.DATE
+    },
+    edo_Emp : {
+        type: DataTypes.STRING
+    },
+    sit_Emp : {
         type: DataTypes.BOOLEAN
     },
-    IDRol: {
+    id_Puesto : {
         type: DataTypes.INTEGER
     },
-    IDSucursal: {
+    id_Sucursal : {
+        type: DataTypes.INTEGER
+    },
+    id_Rol : {
+        type: DataTypes.INTEGER
+    },
+    id_Usuario : {
         type: DataTypes.INTEGER
     },
 }, {
